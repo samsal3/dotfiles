@@ -1,0 +1,23 @@
+set nocompatible
+
+syntax on
+color oscuro
+
+set background=dark
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+set incsearch
+set viminfo=""
+set ruler
+set noswapfile
+set encoding=utf-8
+set fileencoding=utf-8
+set autoindent
+set smartindent
+set laststatus=2
+set hidden
+set wildmenu
+
+autocmd FileType make set noexpandtab
