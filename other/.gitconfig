@@ -5,3 +5,5 @@
 	email = samsal681@icloud.com
 [init]
 	templatedir = ~/.git_template
+[alias]
+	ctags = !.git/hooks/ctags
