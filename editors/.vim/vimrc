@@ -20,4 +20,6 @@ set laststatus=2
 set hidden
 set wildmenu
 
+set tags=tags;$HOME
+
 autocmd FileType make set noexpandtab
