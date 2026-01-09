@@ -1,4 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =2
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/Users/samsal/developer/aoc2025/source/util.hpp'
 let g:netrw_dirhist_2='/Users/samsal/developer/wgpu_test'
 let g:netrw_dirhist_1='/Users/samsal/Developer/WGPUTest/Source'

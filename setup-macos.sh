@@ -7,3 +7,4 @@ ln -s $SCRIPT_DIR/editors/.vim $HOME
 
 ln -s $SCRIPT_DIR/other/.git_template $HOME
 ln -s $SCRIPT_DIR/other/.gitconfig $HOME
+ln -s $SCRIPT_DIR/other/.tmux.conf $HOME
