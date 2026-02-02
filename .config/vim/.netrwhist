@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =3
+let g:netrw_dirhistcnt =5
+let g:netrw_dirhist_5='/Users/samsal/developer/dotfiles/editors/.config/nvim/lua/config'
+let g:netrw_dirhist_4='/Users/samsal/developer/sf_graphics/build/source/CMakeFiles'
 let g:netrw_dirhist_3='/Users/samsal/developer/aoc2025/source/util.hpp'
 let g:netrw_dirhist_2='/Users/samsal/developer/wgpu_test'
 let g:netrw_dirhist_1='/Users/samsal/Developer/WGPUTest/Source'
