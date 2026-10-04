@@ -20,8 +20,8 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
-vim.opt.tabstop = 3
-vim.opt.shiftwidth = 3
+vim.opt.tabstop = 8
+vim.opt.shiftwidth = 8
 vim.opt.expandtab = true
 vim.opt.laststatus = 0
 

@@ -15,3 +15,6 @@ if [ ! -d "$HOME/opt/" ]; then
 fi
 
 ln -s "$SCRIPT_DIR/$USE_ARCH/bin" "$HOME/opt/"
+ln -s "$SCRIPT_DIR/$USE_ARCH/nvim-macos-x86_64" "$HOME/opt/"
+
+
