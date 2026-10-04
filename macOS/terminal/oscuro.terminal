@@ -75,6 +75,12 @@
 	eAB+AIsAoACnAK8AtgC4ALoAvADDAMgAzgDQANIA1A0gDSUNMA05DUYNSQ1WDV8NZA1s
 	AAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAADW8=
 	</data>
+	<key>Bell</key>
+	<false/>
+	<key>BellBadge</key>
+	<false/>
+	<key>BellBounce</key>
+	<false/>
 	<key>Font</key>
 	<data>
 	YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMS
@@ -86,6 +92,8 @@
 	</data>
 	<key>ProfileCurrentVersion</key>
 	<real>2.0699999999999998</real>
+	<key>VisualBell</key>
+	<false/>
 	<key>name</key>
 	<string>oscuro</string>
 	<key>type</key>
