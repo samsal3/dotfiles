@@ -13,4 +13,4 @@ export PATH="$VULKAN_SDK/bin:$PATH"
 export PATH="$HOME/opt/bin:$PATH"
 export PATH="/Applications/CMake.app/Contents/bin:$PATH"
 
-export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
+# export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
