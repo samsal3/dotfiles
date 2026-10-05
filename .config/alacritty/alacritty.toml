@@ -1,10 +1,13 @@
-general.import = [
-        "~/.config/alacritty/catppuccin-mocha.toml"
-]
+# general.import = [
+#         "~/.config/alacritty/spaceduck.toml"
+# ]
 
 [colors.primary]
-background = "#000000"
+background = "#282828"
 
 [window.padding]
-x = 11
-y = 11
+x = 5
+y = 5
+
+[font]
+normal = { family = "Fira Mono", style = "Regular" }

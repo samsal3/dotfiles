@@ -25,23 +25,26 @@ vim.opt.expandtab = true
 vim.opt.laststatus = 0
 
 require("lazy").setup({
-	{
-		"catppuccin/nvim", 
-		name = "catppuccin", 
-		priority = 1000,
-		config = function()
-			require("catppuccin").setup({
-				color_overrides = {
-					mocha = {
-						base = "#000000",
-						mantle = "#000000",
-						crust = "#000000",
-					},
-				},
-			})
-			vim.cmd.colorscheme "catppuccin"
-		end,
-	},
+        {
+                "wtfox/luna.nvim",
+                lazy = false,
+                priority = 1000,
+                opts = {},
+                config = function()
+                        -- vim.cmd("colorscheme luna")
+                end
+        },
+
+        { 
+                "ellisonleao/gruvbox.nvim", 
+                priority = 1000 , 
+                config = true, 
+                opts = {},
+                config = function()
+                        vim.cmd("colorscheme gruvbox")
+                end
+        },
+
 	{
 		"nvim-treesitter/nvim-treesitter",
 		lazy = false,
@@ -53,6 +56,7 @@ require("lazy").setup({
 			})
 		end
 	},
+
         {
                 "saghen/blink.cmp",
                 version = "1.*", 
@@ -66,6 +70,7 @@ require("lazy").setup({
                 },
         },
 }, { ui = { border = "rounded" } })
+
 
 vim.lsp.config("*", {
         capabilities = require("blink.cmp").get_lsp_capabilities(),
