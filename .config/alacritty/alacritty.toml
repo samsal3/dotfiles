@@ -1,13 +1,12 @@
-# general.import = [
-#         "~/.config/alacritty/spaceduck.toml"
-# ]
-
 [colors.primary]
-background = "#282828"
+background = "#202020"
+
+[window]
+decorations = "transparent"
 
 [window.padding]
 x = 5
-y = 5
+y = 30
 
 [font]
 normal = { family = "Fira Mono", style = "Regular" }

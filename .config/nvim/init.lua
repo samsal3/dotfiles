@@ -26,36 +26,99 @@ vim.opt.laststatus = 0
 
 require("lazy").setup({
         {
-                "wtfox/luna.nvim",
-                lazy = false,
-                priority = 1000,
-                opts = {},
+                "ellisonleao/gruvbox.nvim",
+                priority = 1000, -- Load this first so the colorscheme is available
                 config = function()
-                        -- vim.cmd("colorscheme luna")
-                end
-        },
+			vim.opt.termguicolors = true
+			vim.o.background = "dark"
+                        require("gruvbox").setup({
+                                -- Optional configuration settings:
+                                terminal_colors = true, -- add vim custom terminal colors
+                                undercurl = true,
+                                bold = true,
+                                italic = {
+                                        strings = true,
+                                        comments = true,
+                                        operators = false,
+                                        folds = true,
+                                },
+                                strikethrough = true,
+                                invert_selection = false,
+                                invert_signs = false,
+                                invert_tabline = false,
+                                invert_intend_guides = false,
+                                inverse = true, -- invert background for search, diffs, etc.
+                                contrast = "hard", -- can be "hard", "soft" or empty string
+                                palette_overrides = {},
+                                overrides = {},
+                                dim_inactive = false,
+                                transparent_mode = false,
+                        })
 
-        { 
-                "ellisonleao/gruvbox.nvim", 
-                priority = 1000 , 
-                config = true, 
-                opts = {},
-                config = function()
+                        -- Apply the colorscheme
                         vim.cmd("colorscheme gruvbox")
+                end,
+        },
+        {
+                "neovim/nvim-lspconfig",
+                config = function ()
+                        vim.lsp.config("*", {
+                                capabilities = require("blink.cmp").get_lsp_capabilities(),
+                        })
+
+                        vim.lsp.config("clangd", {
+                                cmd = {
+                                        "clangd",
+                                        "--background-index",
+                                        "--clang-tidy",
+                                        "--header-insertion=never",
+                                        "--completion-style=detailed",
+                                },
+                                filetypes = { "c", "cpp", "objc", "objcpp" },
+                                root_markers = { "compile_commands.json", "compile_flags.txt", ".clangd", ".git" },
+                        })
+
+                        vim.lsp.enable("clangd")
+                        vim.diagnostic.config({
+                                signs = false,
+                                underline = true,
+                                update_in_insert = false,
+                                severity_sort = true,
+                                float = { border = "rounded", source = true },
+                                virtual_text = true, -- shows messages inline next to the error
+                        })
+
+                        local map = vim.keymap.set
+
+                        map("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic" })
+                        map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Diagnostics to loclist" })
+
+                        local function switch_source_header()
+                                local bufnr = vim.api.nvim_get_current_buf()
+                                local client = vim.lsp.get_clients({ bufnr = bufnr, name = "clangd" })[1]
+                                if not client then return end
+                                local params = vim.lsp.util.make_text_document_params(bufnr)
+                                client:request("textDocument/switchSourceHeader", params, function(_, result)
+                                        if result then vim.cmd.edit(vim.uri_to_fname(result)) end
+                                end, bufnr)
+                        end
+
+                        vim.api.nvim_create_autocmd("LspAttach", {
+                                callback = function(ev)
+                                        local function lmap(keys, fn, desc)
+                                                map("n", keys, fn, { buffer = ev.buf, desc = desc })
+                                        end
+                                        lmap("gd", vim.lsp.buf.definition, "Go to definition")
+                                        lmap("gD", vim.lsp.buf.declaration, "Go to declaration")
+                                        lmap("gi", vim.lsp.buf.implementation, "Go to implementation")
+                                        lmap("<leader>f", function() vim.lsp.buf.format({ async = true }) end, "Format")
+                                        lmap("<leader>h", switch_source_header, "Switch source/header")
+                                end,
+                        })
+
+
                 end
         },
-
-	{
-		"nvim-treesitter/nvim-treesitter",
-		lazy = false,
-		build = ":TSUpdate",
-		config = function()
-			vim.api.nvim_create_autocmd("FileType", {
-				pattern = { "c", "lua", "vimdoc" },
-				callback = function() vim.treesitter.start() end,
-			})
-		end
-	},
 
         {
                 "saghen/blink.cmp",
@@ -69,61 +132,5 @@ require("lazy").setup({
                         sources = { default = { "lsp", "path", "snippets", "buffer" } },
                 },
         },
-}, { ui = { border = "rounded" } })
-
-
-vim.lsp.config("*", {
-        capabilities = require("blink.cmp").get_lsp_capabilities(),
-})
-
-vim.lsp.config("clangd", {
-        cmd = {
-                "clangd",
-                "--background-index",
-                "--clang-tidy",
-                "--header-insertion=never",
-                "--completion-style=detailed",
-        },
-        filetypes = { "c", "cpp", "objc", "objcpp" },
-        root_markers = { "compile_commands.json", "compile_flags.txt", ".clangd", ".git" },
-})
-
-vim.lsp.enable("clangd")
-
-vim.diagnostic.config({
-        signs = true,
-        underline = true,
-        update_in_insert = false,
-        severity_sort = true,
-        float = { border = "rounded", source = true },
-        virtual_text = true, -- shows messages inline next to the error
-})
-
-local map = vim.keymap.set
-
-map("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic" })
-map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Diagnostics to loclist" })
-
-local function switch_source_header()
-        local bufnr = vim.api.nvim_get_current_buf()
-        local client = vim.lsp.get_clients({ bufnr = bufnr, name = "clangd" })[1]
-        if not client then return end
-        local params = vim.lsp.util.make_text_document_params(bufnr)
-        client:request("textDocument/switchSourceHeader", params, function(_, result)
-                if result then vim.cmd.edit(vim.uri_to_fname(result)) end
-        end, bufnr)
-end
-
-vim.api.nvim_create_autocmd("LspAttach", {
-        callback = function(ev)
-                local function lmap(keys, fn, desc)
-                        map("n", keys, fn, { buffer = ev.buf, desc = desc })
-                end
-                lmap("gd", vim.lsp.buf.definition, "Go to definition")
-                lmap("gD", vim.lsp.buf.declaration, "Go to declaration")
-                lmap("gi", vim.lsp.buf.implementation, "Go to implementation")
-                lmap("<leader>f", function() vim.lsp.buf.format({ async = true }) end, "Format")
-                lmap("<leader>h", switch_source_header, "Switch source/header")
-        end,
 })
 
