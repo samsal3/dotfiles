@@ -1,12 +1,12 @@
 [colors.primary]
-background = "#202020"
+background = "#1D2021"
 
 [window]
-decorations = "transparent"
+decorations = "Full"
 
 [window.padding]
 x = 5
-y = 30
+y = 5
 
 [font]
-normal = { family = "Fira Mono", style = "Regular" }
+normal = { family = "CommitMono" }
