@@ -29,3 +29,7 @@ set makeprg=cmake\ --build\ build
 autocmd QuickFixCmdPost [^l]* cwindow
 
 let g:fzf_layout = { 'down':  '40%'}
+let g:gruvbox_contrast_dark = 'hard'
+
+autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
+highlight Normal ctermbg=NONE guibg=NONE
