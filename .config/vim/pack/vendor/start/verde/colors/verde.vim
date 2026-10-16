@@ -45,6 +45,7 @@ hi Identifier         guibg=bg       guifg=fg      gui=NONE ctermbg=bg ctermfg=f
 hi Type               guibg=bg       guifg=#E5E5E5 gui=bold ctermbg=bg ctermfg=15 cterm=NONE
 hi PreProc            guibg=bg       guifg=fg      gui=bold ctermbg=bg ctermfg=fg cterm=NONE
 hi Constant           guibg=bg       guifg=#D7FFAF gui=bold ctermbg=bg ctermfg=10 cterm=NONE
+hi Character          guibg=bg       guifg=#D7FFAF gui=bold ctermbg=bg ctermfg=10 cterm=NONE
 hi Comment            guibg=bg       guifg=#00A600 gui=NONE ctermbg=bg ctermfg=02 cterm=NONE
 hi MoreMsg            guibg=bg       guifg=#00A600 gui=NONE ctermbg=bg ctermfg=02 cterm=NONE
 hi Question           guibg=bg       guifg=#00A600 gui=NONE ctermbg=bg ctermfg=02 cterm=NONE

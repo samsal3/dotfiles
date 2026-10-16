@@ -28,3 +28,4 @@ set makeprg=cmake\ --build\ build
 
 autocmd QuickFixCmdPost [^l]* cwindow
 
+let g:fzf_layout = { 'down':  '40%'}

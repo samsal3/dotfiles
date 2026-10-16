@@ -14,4 +14,5 @@ export PATH="$HOME/opt/bin:$PATH"
 export PATH="$HOME/opt/nvim-macos-x86_64/bin:$PATH"
 export PATH="/Applications/CMake.app/Contents/bin:$PATH"
 
-# export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
+
+export PATH="$HOME/.local/bin:$PATH"
