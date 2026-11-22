@@ -2,9 +2,11 @@ vim.o.tabstop = 8
 vim.o.shiftwidth = 8
 vim.o.expandtab = true
 vim.o.laststatus = 0
+vim.o.guicursor = ""
 
 vim.pack.add({
 	{ src = "https://github.com/ellisonleao/gruvbox.nvim" },
+        { src = "https://github.com/ibhagwan/fzf-lua" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 })
 
