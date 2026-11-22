@@ -48,6 +48,18 @@ vim.api.nvim_create_autocmd("FileType", {
         end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "c", "cpp" },
+        callback = function()
+                vim.bo.makeprg = "cmake --build build"
+                if vim.fn.has("win32") == 1 then
+                        vim.bo.errorformat = "%f(%l\\,%c): %m,%f(%l): %m," .. vim.go.errorformat
+                else
+                        vim.bo.errorformat = "%Dninja: Entering directory `%f'," .. vim.go.errorformat
+                end
+        end,
+})
+
 local fzf = require("fzf-lua")
 fzf.setup({
         winopts = {
@@ -62,19 +74,15 @@ fzf.setup({
         },
 })
 
--- files
 vim.keymap.set("n", "<leader>f", fzf.files,         { desc = "Find files in project" })
 vim.keymap.set("n", "<leader>b", fzf.buffers,       { desc = "Open buffers" })
 
--- keyword search (ripgrep)
 vim.keymap.set("n", "<leader>g", fzf.live_grep,     { desc = "Live grep project" })
 vim.keymap.set("n", "<leader>w", fzf.grep_cword,    { desc = "Grep word under cursor" })
 vim.keymap.set("v", "<leader>g", fzf.grep_visual,   { desc = "Grep selection" })
 
--- tags (ctags)
 vim.keymap.set("n", "<leader>t", fzf.tags,          { desc = "Project tags" })
 vim.keymap.set("n", "<leader>T", fzf.btags,         { desc = "Tags in current buffer" })
 vim.keymap.set("n", "<leader>]", fzf.tags_grep_cword, { desc = "Tags matching word under cursor" })
 
--- misc
 vim.keymap.set("n", "<leader>r", fzf.resume,        { desc = "Resume last picker" })
