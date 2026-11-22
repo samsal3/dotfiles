@@ -12,4 +12,5 @@
 
 [core]
 	ignorecase = false
-#	editor = nvim
+#       editor = vim
+	editor = nvim
