@@ -3,6 +3,10 @@
     "gruvbox.nvim": {
       "rev": "48262cda6a8a921b159c8ec3e21b48ccd870b7b2",
       "src": "https://github.com/ellisonleao/gruvbox.nvim"
+    },
+    "nvim-treesitter": {
+      "rev": "37e52c733ada9d8d544d53a763140ef1ba404353",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     }
   }
 }
