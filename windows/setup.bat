@@ -33,6 +33,14 @@ mklink "%USERPROFILE%\.gitconfig" "%ROOT%\.gitconfig" || (
     )
 )
 
+rem --- Windows Terminal: settings and the verde scheme (fragment). File
+rem     symlinks, so the same Developer Mode / admin rule applies. Whatever is
+rem     there is replaced without a backup.
+set "WT_SETTINGS=%LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState"
+set "WT_FRAGMENTS=%LOCALAPPDATA%\Microsoft\Windows Terminal\Fragments\dotfiles"
+call :link_file "%WT_SETTINGS%" "settings.json" "%ROOT%\windows\terminal\settings.json"
+call :link_file "%WT_FRAGMENTS%" "verde.json" "%ROOT%\windows\terminal\verde.json"
+
 endlocal
 exit /b 0
 
@@ -43,4 +51,12 @@ if exist "%~1" (
     echo Backing up "%~1" to "%BACKUP%\%~nx1"
     move "%~1" "%BACKUP%\%~nx1" >nul || exit 1
 )
+exit /b 0
+
+rem Replace %1\%2 with a file symlink to %3, creating folder %1 if needed.
+:link_file
+if not exist "%~1" mkdir "%~1"
+rem No "if exist": it follows the link, so a dangling old link would be kept.
+del /f /q "%~1\%~2" 2>nul
+mklink "%~1\%~2" "%~3" || echo Could not link "%~1\%~2". Run as admin or enable Developer Mode.
 exit /b 0

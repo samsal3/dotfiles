@@ -1,9 +1,18 @@
 set nocompatible
 
 syntax on
+
+if has('termguicolors') && !has('gui_running') && !has('mac')
+	" tmux-256color is not xterm-like, so Vim won't fill these in itself
+	if empty(&t_8f)
+		let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+		let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+	endif
+	set termguicolors
+endif
+
 color verde
 
-set background=dark
 set tabstop=8
 set softtabstop=8
 set shiftwidth=8
@@ -29,7 +38,3 @@ set makeprg=cmake\ --build\ build
 autocmd QuickFixCmdPost [^l]* cwindow
 
 let g:fzf_layout = { 'down':  '40%'}
-let g:gruvbox_contrast_dark = 'hard'
-
-autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
-highlight Normal ctermbg=NONE guibg=NONE

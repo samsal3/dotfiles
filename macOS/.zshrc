@@ -1,6 +1,6 @@
 bindkey -v
 PROMPT="%1d $ "
-alias ls="ls -la"
+alias ls="ls -laG"
 
 export VULKAN_VERSION="1.4.363.1"
 export VULKAN_SDK="$HOME/opt/VulkanSDK/$VULKAN_VERSION/macOS"

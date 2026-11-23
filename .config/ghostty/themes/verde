@@ -1,0 +1,25 @@
+# verde: matches macOS/terminal/verde.terminal and the verde Vim colorscheme.
+# ANSI slots not tied to the theme use Terminal.app's defaults.
+background = #041818
+foreground = #D3B58D
+cursor-color = #D3B58D
+cursor-text = #041818
+selection-background = #0000B2
+selection-foreground = #E5E5E5
+
+palette = 0=#041818
+palette = 1=#990000
+palette = 2=#00A600
+palette = 3=#999900
+palette = 4=#4A86E8
+palette = 5=#B200B2
+palette = 6=#00A6B2
+palette = 7=#D3B58D
+palette = 8=#666666
+palette = 9=#E50000
+palette = 10=#D7FFAF
+palette = 11=#E5E500
+palette = 12=#8AB4F8
+palette = 13=#E500E5
+palette = 14=#00E5E5
+palette = 15=#E5E5E5

@@ -1,0 +1,27 @@
+{
+    "schemes": [
+        {
+            "name": "verde",
+            "background": "#041818",
+            "foreground": "#D3B58D",
+            "cursorColor": "#D3B58D",
+            "selectionBackground": "#0000B2",
+            "black": "#041818",
+            "red": "#990000",
+            "green": "#00A600",
+            "yellow": "#999900",
+            "blue": "#4A86E8",
+            "purple": "#B200B2",
+            "cyan": "#00A6B2",
+            "white": "#D3B58D",
+            "brightBlack": "#666666",
+            "brightRed": "#E50000",
+            "brightGreen": "#D7FFAF",
+            "brightYellow": "#E5E500",
+            "brightBlue": "#8AB4F8",
+            "brightPurple": "#E500E5",
+            "brightCyan": "#00E5E5",
+            "brightWhite": "#E5E5E5"
+        }
+    ]
+}

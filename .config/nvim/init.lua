@@ -6,6 +6,7 @@ vim.o.shiftwidth = 8
 vim.o.expandtab = true
 vim.o.laststatus = 0
 vim.o.guicursor = ""
+vim.o.mousescroll = "ver:1,hor:6"
 
 vim.pack.add({
 	{ src = "https://github.com/ellisonleao/gruvbox.nvim" },
@@ -14,8 +15,8 @@ vim.pack.add({
 })
 
 require("gruvbox").setup({
-        undercurl = false,
-        underline = false,
+        undercurl = true,
+        underline = true,
         bold = true,
         italic = {
                 strings = false,
@@ -24,7 +25,7 @@ require("gruvbox").setup({
                 operators = false,
                 folds = false,
         },
-        strikethrough = false,
+        strikethrough = true,
         invert_selection = false,
         invert_signs = false,
         invert_tabline = false,
@@ -37,16 +38,16 @@ require("gruvbox").setup({
 })
 vim.cmd("colorscheme gruvbox")
 
-require("nvim-treesitter").install({
-        "c",
-        "cpp",
-        "lua"
-})
-vim.api.nvim_create_autocmd("FileType", {
-        callback = function(args)
-                pcall(vim.treesitter.start, args.buf)
-        end,
-})
+-- require("nvim-treesitter").install({
+--         "c",
+--         "cpp",
+--         "lua"
+-- })
+-- vim.api.nvim_create_autocmd("FileType", {
+--         callback = function(args)
+--                 pcall(vim.treesitter.start, args.buf)
+--         end,
+-- })
 
 vim.api.nvim_create_autocmd("FileType", {
         pattern = { "c", "cpp" },
@@ -74,15 +75,15 @@ fzf.setup({
         },
 })
 
-vim.keymap.set("n", "<leader>f", fzf.files,         { desc = "Find files in project" })
-vim.keymap.set("n", "<leader>b", fzf.buffers,       { desc = "Open buffers" })
+vim.keymap.set("n", "<leader>f", fzf.files, { desc = "Find files in project" })
+vim.keymap.set("n", "<leader>b", fzf.buffers, { desc = "Open buffers" })
 
-vim.keymap.set("n", "<leader>g", fzf.live_grep,     { desc = "Live grep project" })
-vim.keymap.set("n", "<leader>w", fzf.grep_cword,    { desc = "Grep word under cursor" })
-vim.keymap.set("v", "<leader>g", fzf.grep_visual,   { desc = "Grep selection" })
+vim.keymap.set("n", "<leader>g", fzf.live_grep, { desc = "Live grep project" })
+vim.keymap.set("n", "<leader>w", fzf.grep_cword, { desc = "Grep word under cursor" })
+vim.keymap.set("v", "<leader>g", fzf.grep_visual, { desc = "Grep selection" })
 
-vim.keymap.set("n", "<leader>t", fzf.tags,          { desc = "Project tags" })
-vim.keymap.set("n", "<leader>T", fzf.btags,         { desc = "Tags in current buffer" })
+vim.keymap.set("n", "<leader>t", fzf.tags, { desc = "Project tags" })
+vim.keymap.set("n", "<leader>T", fzf.btags, { desc = "Tags in current buffer" })
 vim.keymap.set("n", "<leader>]", fzf.tags_grep_cword, { desc = "Tags matching word under cursor" })
 
-vim.keymap.set("n", "<leader>r", fzf.resume,        { desc = "Resume last picker" })
+vim.keymap.set("n", "<leader>r", fzf.resume, { desc = "Resume last picker" })
