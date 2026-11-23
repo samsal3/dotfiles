@@ -1,5 +1,8 @@
 set nocompatible
 
+let mapleader = " "
+let maplocalleader = " "
+
 syntax on
 
 if has('termguicolors') && !has('gui_running') && !has('mac')
@@ -38,3 +41,14 @@ set makeprg=cmake\ --build\ build
 autocmd QuickFixCmdPost [^l]* cwindow
 
 let g:fzf_layout = { 'down':  '40%'}
+
+nnoremap <leader>f :Files<CR>
+nnoremap <leader>b :Buffers<CR>
+
+nnoremap <leader>g :RG<CR>
+nnoremap <leader>w :Rg <C-r><C-w><CR>
+xnoremap <silent> <leader>g "zy:execute 'Rg ' . escape(@z, '\.^$*+?()[]{}<Bar>')<CR>
+
+nnoremap <leader>t :Tags<CR>
+nnoremap <leader>T :BTags<CR>
+nnoremap <leader>] :Tags <C-r><C-w><CR>

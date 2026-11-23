@@ -1,20 +1,44 @@
-// Windows Terminal settings. Goes in:
-//   %LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json
-// The "verde" color scheme comes from verde.json (a fragment) in this folder.
 {
+    "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
+    "actions": [],
     "defaultProfile": "{eaee8008-e622-4bc1-b555-aaa60bcb3cbf}",
-    "profiles": {
-        "defaults": {
-            "colorScheme": "verde"
-        },
-        "list": [
+    "keybindings": [],
+    "newTabMenu":
+    [
+        {
+            "type": "remainingProfiles"
+        }
+    ],
+    "profiles":
+    {
+        "defaults":
+        {
+            "colorScheme": "verde",
+            "font":
             {
+                "size": 9
+            }
+        },
+        "list":
+        [
+            {
+                "commandline": "powershell.exe -NoLogo -NoExit -Command Set-PSReadLineOption -EditMode Vi -ViModeIndicator Cursor",
                 "guid": "{eaee8008-e622-4bc1-b555-aaa60bcb3cbf}",
-                "name": "PowerShell (vi)",
-                // PSReadLine's vi editing mode; the cursor shape shows insert vs. normal.
-                "commandline": "powershell.exe -NoLogo -NoExit -Command Set-PSReadLineOption -EditMode Vi -ViModeIndicator Cursor"
+                "name": "PowerShell (vi)"
+            },
+            {
+                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+                "hidden": false,
+                "name": "Windows PowerShell"
+            },
+            {
+                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+                "hidden": false,
+                "name": "Command Prompt"
             }
         ]
-    }
+    },
+    "schemes": [],
+    "themes": []
 }

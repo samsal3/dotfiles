@@ -1,62 +1,64 @@
 @echo off
 setlocal
 
+rem Links this repo's configs into place for git, Windows Terminal and Vim.
+rem Anything already at a target (file, folder or old link) is DELETED and
+rem replaced by a symlink. Symlinks need Developer Mode or an admin prompt.
+
 rem Repo root (parent of this script's folder), as a clean absolute path.
 for %%I in ("%~dp0..") do set "ROOT=%%~fI"
 
-rem Backups for this run go in windows\tmp\backup-N (first unused number).
-set /a N=1
-:next_backup
-if exist "%~dp0tmp\backup-%N%" (
-    set /a N+=1
-    goto next_backup
+rem Stop early if this shell can't create symlinks.
+set "PROBE=%TEMP%\dotfiles-symlink-test-%RANDOM%"
+mklink "%PROBE%" "%~f0" >nul 2>&1 || (
+    echo Cannot create symlinks. Enable Developer Mode or run as administrator.
+    exit /b 1
 )
-set "BACKUP=%~dp0tmp\backup-%N%"
+del "%PROBE%"
 
-rem --- nvim: link repo config to where Neovim looks on Windows ---
-call :backup "%LOCALAPPDATA%\nvim"
-mklink /J "%LOCALAPPDATA%\nvim" "%ROOT%\.config\nvim"
+rem --- git ---
+call :link "%USERPROFILE%\.gitconfig"    "%ROOT%\.gitconfig"
+call :link "%USERPROFILE%\.git_template" "%ROOT%\.git_template"
 
-rem --- .git_template: folder, so a junction works ---
-call :backup "%USERPROFILE%\.git_template"
-mklink /J "%USERPROFILE%\.git_template" "%ROOT%\.git_template"
+rem --- Windows Terminal (Store install) ---
+set "WT=%LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState"
+call :link "%WT%\settings.json" "%~dp0terminal\settings.json"
+rem The "verde" color scheme is loaded as a fragment.
+call :link "%LOCALAPPDATA%\Microsoft\Windows Terminal\Fragments\dotfiles\verde.json" "%~dp0terminal\verde.json"
 
-rem --- .gitconfig: a file, so it needs a file symlink (mklink without /J;
-rem     requires Developer Mode or an elevated prompt). Contents are never
-rem     edited: the old file is backed up and replaced by the link.
-call :backup "%USERPROFILE%\.gitconfig"
-mklink "%USERPROFILE%\.gitconfig" "%ROOT%\.gitconfig" || (
-    echo Could not create the symlink. Run as admin or enable Developer Mode.
-    if exist "%BACKUP%\.gitconfig" (
-        echo Restoring the original .gitconfig.
-        move "%BACKUP%\.gitconfig" "%USERPROFILE%\.gitconfig" >nul
-    )
-)
+rem --- Vim: on Windows it reads ~/vimfiles/vimrc and ~/vimfiles/pack ---
+call :link "%USERPROFILE%\vimfiles" "%ROOT%\.config\vim"
 
-rem --- Windows Terminal: settings and the verde scheme (fragment). File
-rem     symlinks, so the same Developer Mode / admin rule applies. Whatever is
-rem     there is replaced without a backup.
-set "WT_SETTINGS=%LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState"
-set "WT_FRAGMENTS=%LOCALAPPDATA%\Microsoft\Windows Terminal\Fragments\dotfiles"
-call :link_file "%WT_SETTINGS%" "settings.json" "%ROOT%\windows\terminal\settings.json"
-call :link_file "%WT_FRAGMENTS%" "verde.json" "%ROOT%\windows\terminal\verde.json"
-
+echo Done.
 endlocal
 exit /b 0
 
-rem Move an existing file/folder into this run's backup folder so nothing is lost.
-:backup
-if exist "%~1" (
-    if not exist "%BACKUP%" mkdir "%BACKUP%"
-    echo Backing up "%~1" to "%BACKUP%\%~nx1"
-    move "%~1" "%BACKUP%\%~nx1" >nul || exit 1
+rem Replace %1 with a symlink to %2 (a file or a folder).
+:link
+if not exist "%~2" (
+    echo Missing source "%~2", skipping.
+    exit /b 0
 )
-exit /b 0
-
-rem Replace %1\%2 with a file symlink to %3, creating folder %1 if needed.
-:link_file
-if not exist "%~1" mkdir "%~1"
-rem No "if exist": it follows the link, so a dangling old link would be kept.
-del /f /q "%~1\%~2" 2>nul
-mklink "%~1\%~2" "%~3" || echo Could not link "%~1\%~2". Run as admin or enable Developer Mode.
+if not exist "%~dp1" mkdir "%~dp1"
+rem Remove what's there. "path\*" exists only for folders (and folder links).
+if exist "%~1\*" (
+    rem A plain rmdir removes a link or empty folder without touching its target.
+    rmdir "%~1" 2>nul || rmdir /s /q "%~1"
+) else if exist "%~1" (
+    del /f /q "%~1"
+) else (
+    rem Clear a broken link, which "if exist" can't see.
+    rmdir "%~1" 2>nul
+    del /f /q "%~1" 2>nul
+)
+if exist "%~2\*" (
+    mklink /D "%~1" "%~2" >nul
+) else (
+    mklink "%~1" "%~2" >nul
+)
+if errorlevel 1 (
+    echo FAILED: "%~1"
+) else (
+    echo Linked "%~1" -^> "%~2"
+)
 exit /b 0
