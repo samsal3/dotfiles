@@ -26,8 +26,10 @@ call :link "%WT%\settings.json" "%~dp0terminal\settings.json"
 rem The "verde" color scheme is loaded as a fragment.
 call :link "%LOCALAPPDATA%\Microsoft\Windows Terminal\Fragments\dotfiles\verde.json" "%~dp0terminal\verde.json"
 
-rem --- Vim: on Windows it reads ~/vimfiles/vimrc and ~/vimfiles/pack ---
-call :link "%USERPROFILE%\vimfiles" "%ROOT%\.config\vim"
+rem --- Vim: Windows Vim reads ~/vimfiles; Git for Windows' bundled Vim
+rem     (what git opens for commit messages) reads ~/.config/vim instead ---
+call :link "%USERPROFILE%\vimfiles"     "%ROOT%\.config\vim"
+call :link "%USERPROFILE%\.config\vim" "%ROOT%\.config\vim"
 
 echo Done.
 endlocal

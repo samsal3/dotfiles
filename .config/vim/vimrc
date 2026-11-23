@@ -41,6 +41,8 @@ set makeprg=cmake\ --build\ build
 autocmd QuickFixCmdPost [^l]* cwindow
 
 let g:fzf_layout = { 'down':  '40%'}
+
+let g:fzf_force_termguicolors = &termguicolors
 let g:fzf_colors = {
 	\ 'fg':      ['fg', 'Normal'],
 	\ 'bg':      ['bg', 'Normal'],
