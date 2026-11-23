@@ -7,14 +7,7 @@ if exists("syntax_on")
   syntax reset
 endif
 
-" Colors are defined twice:
-"   gui*   exact hex, used by GUI Vim and by terminal Vim with 'termguicolors'
-"   cterm* nearest xterm-256 index (16-255) as a fallback for terminals without
-"          truecolor (e.g. macOS Terminal.app). Indices 0-15 are deliberately not
-"          used: they follow the terminal's palette theme.
-"   Normal has ctermbg=NONE, so the fallback shows the terminal's own background.
-
-hi Normal             guibg=#041818  guifg=#D3B58D gui=NONE ctermbg=NONE ctermfg=180 cterm=NONE
+hi Normal            guibg=#041818  guifg=#D3B58D gui=NONE ctermbg=NONE ctermfg=180 cterm=NONE
 hi NonText            guibg=bg       guifg=fg      gui=NONE ctermbg=NONE ctermfg=fg cterm=NONE
 hi StatusLine         guibg=#0C4848  guifg=#E5E5E5 gui=NONE ctermbg=23 ctermfg=254 cterm=NONE
 hi StatusLineNC       guibg=#062424  guifg=#E5E5E5 gui=NONE ctermbg=234 ctermfg=254 cterm=NONE
@@ -35,10 +28,12 @@ hi Pmenu              guibg=bg       guifg=fg      gui=NONE ctermbg=NONE ctermfg
 hi PmenuSel           guibg=#0000B2  guifg=#E5E5E5 gui=NONE ctermbg=19 ctermfg=254 cterm=NONE
 hi Statement          guibg=bg       guifg=#E5E5E5 gui=NONE ctermbg=NONE ctermfg=254 cterm=NONE
 hi Identifier         guibg=bg       guifg=fg      gui=NONE ctermbg=NONE ctermfg=fg cterm=NONE
-hi Type               guibg=bg       guifg=#E5E5E5 gui=bold ctermbg=NONE ctermfg=254 cterm=NONE
-hi PreProc            guibg=bg       guifg=fg      gui=bold ctermbg=NONE ctermfg=fg cterm=NONE
-hi Constant           guibg=bg       guifg=#D7FFAF gui=bold ctermbg=NONE ctermfg=193 cterm=NONE
-hi Character          guibg=bg       guifg=#D7FFAF gui=bold ctermbg=NONE ctermfg=193 cterm=NONE
+hi Type               guibg=bg       guifg=#E5E5E5 gui=NONE ctermbg=NONE ctermfg=254 cterm=NONE
+hi PreProc            guibg=bg       guifg=fg      gui=NONE ctermbg=NONE ctermfg=fg cterm=NONE
+hi Constant           guibg=bg       guifg=#D7FFD7 gui=NONE ctermbg=NONE ctermfg=194 cterm=NONE
+hi Character          guibg=bg       guifg=#D7FFD7 gui=NONE ctermbg=NONE ctermfg=194 cterm=NONE
+hi String             guibg=bg       guifg=#D7FFAF gui=NONE ctermbg=NONE ctermfg=193 cterm=NONE
+hi SpecialChar        guibg=bg       guifg=#D7FFD7 gui=NONE ctermbg=NONE ctermfg=194 cterm=NONE
 hi Comment            guibg=bg       guifg=#00A600 gui=NONE ctermbg=NONE ctermfg=34 cterm=NONE
 hi MoreMsg            guibg=bg       guifg=#00A600 gui=NONE ctermbg=NONE ctermfg=34 cterm=NONE
 hi Question           guibg=bg       guifg=#00A600 gui=NONE ctermbg=NONE ctermfg=34 cterm=NONE

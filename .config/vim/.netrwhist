@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =9
+let g:netrw_dirhistcnt =0
+let g:netrw_dirhist_0='/Users/samsal/developer/dotfiles/.config/vim'
 let g:netrw_dirhist_9='/Users/samsal/developer/dotfiles/.config/vim/pack/vendor/start/verde/colors'
 let g:netrw_dirhist_8='/Users/samsal/developer/dotfiles/.config/vim/pack/vendor/start/verde'
 let g:netrw_dirhist_7='/Users/samsal/developer/dotfiles/.config/vim'
