@@ -1,5 +1,4 @@
 " Author: Sergio Samuel Saldaña Flores
-" Based on Jonathan Blow's emacs color theme
 
 set background=dark
 hi clear
@@ -48,6 +47,8 @@ hi WarningMsg       guibg=#990000 guifg=#E5E5E5 gui=NONE ctermbg=88   ctermfg=25
 hi SpellLocal       guibg=#990000 guifg=#E5E5E5 gui=NONE ctermbg=88   ctermfg=254 cterm=NONE
 hi SpellRare        guibg=#990000 guifg=#E5E5E5 gui=NONE ctermbg=88   ctermfg=254 cterm=NONE
 hi SpellCap         guibg=#990000 guifg=#E5E5E5 gui=NONE ctermbg=88   ctermfg=254 cterm=NONE
+
+hi link pythonBuiltin Constant
 
 let g:colors_name = "verde"
 

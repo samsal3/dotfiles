@@ -1,5 +1,5 @@
 [colors.primary]
-background = "#1D2021"
+background = "#041818"
 
 [window]
 decorations = "Full"
@@ -9,4 +9,4 @@ x = 5
 y = 5
 
 [font]
-normal = { family = "CommitMono" }
+normal = { family = "Cascadia Mono" }

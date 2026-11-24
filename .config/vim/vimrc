@@ -21,6 +21,8 @@ set softtabstop=8
 set shiftwidth=8
 " set expandtab
 set incsearch
+set ttimeout
+set ttimeoutlen=50
 set viminfo=""
 set ruler
 set noswapfile
@@ -59,7 +61,6 @@ nnoremap <leader>f :Files<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>g :RG<CR>
 nnoremap <leader>w :Rg <C-r><C-w><CR>
-xnoremap <silent> <leader>g "zy:execute 'Rg ' . escape(@z, '\.^$*+?()[]{}<Bar>')<CR>
 nnoremap <leader>t :Tags<CR>
 nnoremap <leader>T :BTags<CR>
 nnoremap <leader>] :Tags <C-r><C-w><CR>

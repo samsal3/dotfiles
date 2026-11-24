@@ -6,7 +6,6 @@ vim.o.shiftwidth = 8
 vim.o.expandtab = true
 vim.o.laststatus = 0
 vim.o.guicursor = ""
-vim.o.mousescroll = "ver:1,hor:6"
 
 vim.pack.add({
 	{ src = "https://github.com/ellisonleao/gruvbox.nvim" },
