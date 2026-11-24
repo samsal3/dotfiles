@@ -2,7 +2,7 @@
     "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
     "actions": [],
-    "defaultProfile": "{eaee8008-e622-4bc1-b555-aaa60bcb3cbf}",
+    "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
     "keybindings": [],
     "newTabMenu":
     [
@@ -23,11 +23,7 @@
         "list":
         [
             {
-                "commandline": "powershell.exe -NoLogo -NoExit -Command Set-PSReadLineOption -EditMode Vi -ViModeIndicator Cursor",
-                "guid": "{eaee8008-e622-4bc1-b555-aaa60bcb3cbf}",
-                "name": "PowerShell (vi)"
-            },
-            {
+                "commandline": "powershell.exe -NoLogo",
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
                 "hidden": false,
                 "name": "Windows PowerShell"
